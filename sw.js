@@ -1,5 +1,6 @@
 let staticCacheName = 'review-cache-v3';
 
+//adds event listener for service worker
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(staticCacheName).then( (cache) => {
@@ -36,6 +37,7 @@ self.addEventListener('install', function(event) {
   );
 });
 
+//on activated service worker
 self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then( (cacheNames) => {
@@ -51,6 +53,7 @@ self.addEventListener('activate', function (event) {
   );
 });
 
+//when we need to fetch
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
@@ -59,6 +62,7 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
+//message on waiting
 self.addEventListener('message', function(event) {
   if (event.data.action === 'skipWaiting') {
     self.skipWaiting();
