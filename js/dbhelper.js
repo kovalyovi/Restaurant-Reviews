@@ -9,13 +9,13 @@ class DBHelper {
    * Change this to restaurants.json file location on your server.
    */
   static getProjName() {
-    return "restaurant-reviews/";
+    return "./";
   }
 
   static get DATABASE_URL() {
     const port = 63342 // Change this to your server port
     const projName = DBHelper.getProjName();
-    return `http://localhost:${port}/${projName}/data/restaurants.json`;
+    return `${projName}/data/restaurants.json`;
   }
 
   /**
